@@ -2,7 +2,7 @@
   "name": "samurai-chat-back",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "index.js",
   "scripts": {
     "start-dev": "nodemon --inspect dist/app.ts",
     "watch-dev": "tsc -w",
