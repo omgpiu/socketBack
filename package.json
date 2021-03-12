@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "start-dev": "nodemon --inspect dist/app.js",
+    "start-dev": "nodemon --inspect dist/app.ts",
     "watch-dev": "tsc -w",
     "build": "tsc",
     "start": "node dist/app.ts"
