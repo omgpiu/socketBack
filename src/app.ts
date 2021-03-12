@@ -14,7 +14,7 @@ const messages: Array<any> = []
 const usersState = new Map();
 
 socket.on('connection', (socketChannel) => {
-    usersState.set(socketChannel, {id: new Date().getTime().toString(), name: 'anonym'} )
+    usersState.set(socketChannel, {id: new Date().getTime().toString(), name: 'anonym'})
 
     socket.on('disconnect', () => {
         usersState.delete(socketChannel);
@@ -26,7 +26,7 @@ socket.on('connection', (socketChannel) => {
         }
 
         socketChannel.join('yo-channel');
-    
+
         const user = usersState.get(socketChannel);
         user.name = name;
     });
@@ -36,10 +36,12 @@ socket.on('connection', (socketChannel) => {
     });
 
     socketChannel.on('client-message-sent', (message: string, successFn) => {
+        console.log(message)
         if (typeof message !== 'string' || message.length > 20) {
             try {
                 successFn("Message length should be less than 20 chars")
-            }catch(error){}
+            } catch (error) {
+            }
 
             return;
         }
@@ -57,18 +59,16 @@ socket.on('connection', (socketChannel) => {
         socket.to('yo-channel').emit('bla-bla', {name: 'blabla'})
 
 
-
         try {
             successFn(null);
-        } catch(error) {
+        } catch (error) {
 
         }
     })
 
     socketChannel.emit('init-messages-published', messages, (data: string) => {
-        console.log("INIT MESSAGES RECEIVED: " + data )
+        console.log("INIT MESSAGES RECEIVED: " + data)
     })
-
 
 
     console.log('a user connected')
